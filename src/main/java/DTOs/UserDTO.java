@@ -23,15 +23,10 @@ public class UserDTO {
         this.phone_number = phone_number;
     }
 
-    public UserDTO(boolean employee, String email, String user_address, String phone_number, Integer id) {
-        this.employee = employee;
-        this.email = email;
-        this.user_address = user_address;
-        this.phone_number = phone_number;
-        this.id = id;
-    }
-
     public UserDTO(TblUsersRecord tblUsersRecord, boolean includePwrd) {
+
+        this.id =  tblUsersRecord.getId();
+        this.username = tblUsersRecord.getUsername();
         this.email = tblUsersRecord.getEmail();
         this.user_address = tblUsersRecord.getUserAddress();
         this.employee = tblUsersRecord.getEmployee();

@@ -10,6 +10,7 @@ import org.yaml.snakeyaml.events.Event;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.jooq.tables.TblUsers.TBL_USERS;
 
@@ -21,8 +22,13 @@ public class UsersRepository {
         this._context = _context;
     }
 
-    public UserDTO getUserDetails(String username) {
-        return new UserDTO(_context.selectFrom(TBL_USERS).where(TBL_USERS.USERNAME.eq(username)).fetchOne(), false);
+    public UserDTO getUserDetails(String username, boolean includePwrd) {
+        Optional<TblUsersRecord> value = _context.selectFrom(TBL_USERS).where(TBL_USERS.USERNAME.eq(username)).fetchOptional();
+        if(value.isEmpty()){
+            return null;
+        }
+        TblUsersRecord usersRecord = value.get();
+        return new UserDTO(usersRecord, includePwrd);
     }
 
     public List<UserDTO> getAllUsers() {

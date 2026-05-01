@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!-- Fixed Navbar -->
 <nav class="navbar">
@@ -21,6 +23,11 @@
             <li><a href="custom-cakes.html" class="nav-link">Custom Cakes</a></li>
             <li><a href="/about" class="nav-link">About</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <sec:authorize access="hasRole('1')">
+                <li><a href="contact.html" class="nav-link">Admin</a></li>
+            </sec:authorize>
+
+
             <li><a href="PRO.html" class="nav-link">Login</a></li>
         </ul>
 

@@ -1,7 +1,6 @@
-package com.example.custom_cake_system;
+package com.example.custom_cake_system.controllers;
 import com.example.custom_cake_system.data_access.ProductsRepository;
 import DTOs.ProductDTO;
-import DTOs.UserDTO;
 import com.example.custom_cake_system.data_access.UsersRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
