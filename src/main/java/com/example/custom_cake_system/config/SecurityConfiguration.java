@@ -39,7 +39,8 @@ public class SecurityConfiguration  {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/css/**", "/js/**").permitAll()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/user/login", "/perform_login").permitAll()
+                        .requestMatchers("/user/signup","user/perform_signup","user/perform_signup/**").permitAll()
+                        .requestMatchers("/user/login", "user/perform_login","user/perform_login/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("1")
                         .anyRequest().authenticated()
                 )
@@ -50,6 +51,7 @@ public class SecurityConfiguration  {
                         .failureUrl("/user/login?error=true")
                         .permitAll()
                 )
+
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/user/login?logout=true")

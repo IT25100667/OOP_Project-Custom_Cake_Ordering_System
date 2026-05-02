@@ -4,6 +4,7 @@
 
 <t:styles />
 <t:header />
+<title>Sign Up</title>
     <style>
         .auth-container {
             min-height: 100vh;
@@ -76,21 +77,32 @@
     <div class="auth-container">
         <div class="auth-card">
             <h2>Welcome Back</h2>
-            <p>Login to your account or <a href="signup" style="color: hsl(var(--clr-accent)); font-weight: 600;">sign up</a></p>
+            <p>Login to your account or <a href="/login" style="color: hsl(var(--clr-accent)); font-weight: 600;">log in</a></p>
 
-            <form action="${pageContext.request.contextPath}/perform_login" method="POST">
+            <form action="${pageContext.request.contextPath}/user/perform_signup" method="POST">
             <!--Essentially gets the base path of the website-->
                 <div class="form-group">
                     <label class="form-label" for="username">Username</label>
                     <input type="text" id="username" class="form-control" name="username" required >
                 </div>
-
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-control" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="address">Address</label>
+                    <input type="text" id="address" class="form-control" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone</label>
+                    <input type="tel" id="phone" class="form-control" name="phone" required>
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="password">Password</label>
                     <input type="password" id="password" class="form-control" name="password" required>
                 </div>
                 <c:if test="${not empty param.error}">
-                    <p style="color:black; background:#FF8787; border-radius: 20px;">Incorrect Username or Password</p>
+                    <p style="color:black; background:#FF8787; border-radius: 20px;">A user with the chosen username, email or phone number already exists. Please try again with different credentials</p>
                 </c:if>
                 <div style="text-align: right; margin-bottom: 2rem;">
                     <a href="#" style="font-size: 0.9rem; color: hsl(var(--clr-text-dark) / 0.7);">Forgot password?</a>

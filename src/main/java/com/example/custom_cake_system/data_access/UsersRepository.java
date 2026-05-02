@@ -31,6 +31,15 @@ public class UsersRepository {
         return new UserDTO(usersRecord, includePwrd);
     }
 
+    public UserDTO getUserDetailsByEmail(String email, boolean includePwrd) {
+        Optional<TblUsersRecord> value = _context.selectFrom(TBL_USERS).where(TBL_USERS.EMAIL.eq(email)).fetchOptional();
+        if(value.isEmpty()){
+            return null;
+        }
+        TblUsersRecord usersRecord = value.get();
+        return new UserDTO(usersRecord, includePwrd);
+    }
+
     public List<UserDTO> getAllUsers() {
         List<UserDTO> users = new ArrayList<>();
         for (TblUsersRecord x : _context.selectFrom(TBL_USERS).fetch()) {
@@ -58,7 +67,17 @@ public class UsersRepository {
 
     public Response addNewUser(UserDTO user){
         try{
-            user.getRecord().store();
+            _context.insertInto(TBL_USERS,
+                            TBL_USERS.USERNAME,
+                            TBL_USERS.PASSWORD,
+                            TBL_USERS.EMAIL,
+                            TBL_USERS.USER_ADDRESS,
+                            TBL_USERS.PHONE_NUMBER,
+                            TBL_USERS.EMPLOYEE
+                    )
+                    .values(user.username, user.getPassword(), user.email, user.user_address, user.phone_number, user.employee)
+                    .execute();
+            _context.insertInto(TBL_USERS).set(user.getRecord()).execute();
             return new Response();
         } catch (Exception e) {
             return new Response(false, e.getMessage());
