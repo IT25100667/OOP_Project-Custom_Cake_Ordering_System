@@ -7,9 +7,8 @@ package com.example.jooq.tables;
 import com.example.jooq.DefaultSchema;
 import com.example.jooq.Indexes;
 import com.example.jooq.Keys;
-import com.example.jooq.tables.TblCakeOrders.TblCakeOrdersPath;
 import com.example.jooq.tables.TblCustomModifiers.TblCustomModifiersPath;
-import com.example.jooq.tables.TblModiferValues.TblModiferValuesPath;
+import com.example.jooq.tables.TblModifierValues.TblModifierValuesPath;
 import com.example.jooq.tables.records.TblCustomShoppingCartInfoRecord;
 
 import java.util.Arrays;
@@ -173,20 +172,7 @@ public class TblCustomShoppingCartInfo extends TableImpl<TblCustomShoppingCartIn
 
     @Override
     public List<ForeignKey<TblCustomShoppingCartInfoRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS_0, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_1, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1);
-    }
-
-    private transient TblCakeOrdersPath _tblCakeOrders;
-
-    /**
-     * Get the implicit join path to the <code>defaultdb.tbl_cake_orders</code>
-     * table.
-     */
-    public TblCakeOrdersPath tblCakeOrders() {
-        if (_tblCakeOrders == null)
-            _tblCakeOrders = new TblCakeOrdersPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS_0, null);
-
-        return _tblCakeOrders;
+        return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_1, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1);
     }
 
     private transient TblCustomModifiersPath _tblCustomModifiers;
@@ -202,17 +188,17 @@ public class TblCustomShoppingCartInfo extends TableImpl<TblCustomShoppingCartIn
         return _tblCustomModifiers;
     }
 
-    private transient TblModiferValuesPath _tblModiferValues;
+    private transient TblModifierValuesPath _tblModifierValues;
 
     /**
      * Get the implicit join path to the
-     * <code>defaultdb.tbl_modifer_values</code> table.
+     * <code>defaultdb.tbl_modifier_values</code> table.
      */
-    public TblModiferValuesPath tblModiferValues() {
-        if (_tblModiferValues == null)
-            _tblModiferValues = new TblModiferValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1, null);
+    public TblModifierValuesPath tblModifierValues() {
+        if (_tblModifierValues == null)
+            _tblModifierValues = new TblModifierValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1, null);
 
-        return _tblModiferValues;
+        return _tblModifierValues;
     }
 
     @Override

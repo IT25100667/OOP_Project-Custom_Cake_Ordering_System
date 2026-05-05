@@ -21,7 +21,6 @@ public class HomeController {
         this.usersRepository = usersRepository;
     }
 
-
     @GetMapping({"/home","","/"})
     public String Home(Model model){
         List<ProductDTO> products = productsRepository.getProducts();

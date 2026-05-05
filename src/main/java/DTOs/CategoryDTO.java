@@ -12,7 +12,7 @@ public class CategoryDTO {
     }
 
     public CategoryDTO(TblProdCategoriesRecord x) {
-        this.id = x.getCatgeoryId();
+        this.id = x.getCategeoryId();
         this.name = x.getCategoryName();
     }
 

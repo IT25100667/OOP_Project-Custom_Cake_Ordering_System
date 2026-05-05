@@ -20,11 +20,11 @@
 
                 </div>
             </li>
-            <li><a href="custom-cakes.html" class="nav-link">Custom Cakes</a></li>
-            <li><a href="/about" class="nav-link">About</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="/products/custom-cakes" class="nav-link">Custom Cakes</a></li>
+            <li><a href="home/about" class="nav-link">About</a></li>
+            <li><a href="home/contact" class="nav-link">Contact</a></li>
             <sec:authorize access="hasRole('1')">
-                <li><a href="contact.html" class="nav-link">Admin</a></li>
+                <li><a href="user/dashboard" class="nav-link">Admin</a></li>
             </sec:authorize>
 
 
@@ -32,7 +32,7 @@
         </ul>
 
         <div class="nav-actions">
-            <a href="#" class="icon-btn" title="Profile">
+            <a href="/user/profile" class="icon-btn" title="Profile">
                 <i class="fa-regular fa-user"></i>
             </a>
             <a href="cart.html" class="icon-btn" title="Cart">

@@ -30,7 +30,7 @@ public class CategoryRepository {
     public Response updateCategory(int id, String name){
         try{
             _context.update(TBL_PROD_CATEGORIES).set(TBL_PROD_CATEGORIES.CATEGORY_NAME,name)
-                    .where(TBL_PROD_CATEGORIES.CATGEORY_ID.eq(id)).execute();
+                    .where(TBL_PROD_CATEGORIES.CATEGEORY_ID.eq(id)).execute();
             return new Response();
         }
         catch (Exception ex){
@@ -40,7 +40,7 @@ public class CategoryRepository {
 
     public Response deleteCategory(int id){
         try{
-            _context.delete(TBL_PROD_CATEGORIES).where(TBL_PROD_CATEGORIES.CATGEORY_ID.eq(id)).execute();
+            _context.delete(TBL_PROD_CATEGORIES).where(TBL_PROD_CATEGORIES.CATEGEORY_ID.eq(id)).execute();
             return new Response();
         }
         catch (Exception ex){
@@ -66,7 +66,7 @@ public class CategoryRepository {
 
     public List<CategoryDTO> getCategories(int id){
         return _context.selectFrom(TBL_PROD_CATEGORIES)
-                .where(TBL_PROD_CATEGORIES.CATGEORY_ID.eq(id))
+                .where(TBL_PROD_CATEGORIES.CATEGEORY_ID.eq(id))
                 .stream()
                 .map(CategoryDTO::new).collect(Collectors.toList());
     }

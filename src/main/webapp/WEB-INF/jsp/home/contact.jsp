@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | FAB Cakes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
         .page-header {
             background: linear-gradient(135deg, hsl(var(--clr-surface)) 0%, hsl(var(--clr-surface-dim)) 100%);
@@ -125,23 +125,23 @@
                 <li class="nav-item-dropdown">
                     <a href="#" class="nav-link">Categories <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 4px;"></i></a>
                     <div class="dropdown-menu">
-                        <a href="search.html?category=birthday" class="dropdown-item">Birthday Cakes</a>
-                        <a href="search.html?category=wedding" class="dropdown-item">Wedding Cakes</a>
-                        <a href="search.html?category=anniversary" class="dropdown-item">Anniversary</a>
-                        <a href="search.html?category=sweets" class="dropdown-item">Sweets & Treats</a>
+                        <a href="/search?category=birthday" class="dropdown-item">Birthday Cakes</a>
+                        <a href="/search?category=wedding" class="dropdown-item">Wedding Cakes</a>
+                        <a href="/search?category=anniversary" class="dropdown-item">Anniversary</a>
+                        <a href="/search?category=sweets" class="dropdown-item">Sweets & Treats</a>
                     </div>
                 </li>
-                <li><a href="custom-cakes.html" class="nav-link">Custom Cakes</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                <li><a href="PRO.html" class="nav-link">Login</a></li>
+                <li><a href="/products/custom-cakes" class="nav-link">Custom Cakes</a></li>
+                <li><a href="/user/dashboard" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link active">Contact</a></li>
+                <li><a href="/user/login" class="nav-link">Login</a></li>
             </ul>
 
             <div class="nav-actions">
-                <a href="#" class="icon-btn" title="Profile">
+                <a href="/user/profile" class="icon-btn" title="Profile">
                     <i class="fa-regular fa-user"></i>
                 </a>
-                <a href="cart.html" class="icon-btn" title="Cart">
+                <a href="/cart" class="icon-btn" title="Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge" style="display: none;">0</span>
                 </a>
@@ -243,6 +243,8 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 </html>

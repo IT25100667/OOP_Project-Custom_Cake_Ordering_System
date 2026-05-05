@@ -34,6 +34,5 @@ public class ProductsController {
         List<ProductDTO> products = productsRepository.getProducts();
         model.addAttribute("products", products);
         return "products/products";
-
     }
 }

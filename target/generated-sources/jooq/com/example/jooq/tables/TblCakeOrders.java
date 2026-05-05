@@ -7,12 +7,11 @@ package com.example.jooq.tables;
 import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
 import com.example.jooq.tables.TblCustomOrderInfo.TblCustomOrderInfoPath;
-import com.example.jooq.tables.TblCustomShoppingCartInfo.TblCustomShoppingCartInfoPath;
 import com.example.jooq.tables.TblProducts.TblProductsPath;
 import com.example.jooq.tables.TblUsers.TblUsersPath;
 import com.example.jooq.tables.records.TblCakeOrdersRecord;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -84,12 +83,17 @@ public class TblCakeOrders extends TableImpl<TblCakeOrdersRecord> {
     /**
      * The column <code>tbl_cake_orders.date_of_order</code>.
      */
-    public final TableField<TblCakeOrdersRecord, LocalDate> DATE_OF_ORDER = createField(DSL.name("date_of_order"), SQLDataType.LOCALDATE, this, "");
+    public final TableField<TblCakeOrdersRecord, LocalDateTime> DATE_OF_ORDER = createField(DSL.name("date_of_order"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
      * The column <code>tbl_cake_orders.order_status</code>.
      */
-    public final TableField<TblCakeOrdersRecord, Integer> ORDER_STATUS = createField(DSL.name("order_status"), SQLDataType.INTEGER, this, "");
+    public final TableField<TblCakeOrdersRecord, String> ORDER_STATUS = createField(DSL.name("order_status"), SQLDataType.VARCHAR(255), this, "");
+
+    /**
+     * The column <code>tbl_cake_orders.total_price</code>.
+     */
+    public final TableField<TblCakeOrdersRecord, Double> TOTAL_PRICE = createField(DSL.name("total_price"), SQLDataType.DOUBLE.nullable(false), this, "");
 
     private TblCakeOrders(Name alias, Table<TblCakeOrdersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -209,19 +213,6 @@ public class TblCakeOrders extends TableImpl<TblCakeOrdersRecord> {
             _tblCustomOrderInfo = new TblCustomOrderInfoPath(this, null, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS.getInverseKey());
 
         return _tblCustomOrderInfo;
-    }
-
-    private transient TblCustomShoppingCartInfoPath _tblCustomShoppingCartInfo;
-
-    /**
-     * Get the implicit to-many join path to the
-     * <code>defaultdb.tbl_custom_shopping_cart_info</code> table
-     */
-    public TblCustomShoppingCartInfoPath tblCustomShoppingCartInfo() {
-        if (_tblCustomShoppingCartInfo == null)
-            _tblCustomShoppingCartInfo = new TblCustomShoppingCartInfoPath(this, null, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS_0.getInverseKey());
-
-        return _tblCustomShoppingCartInfo;
     }
 
     @Override

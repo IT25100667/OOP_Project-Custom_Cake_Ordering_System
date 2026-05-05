@@ -4,11 +4,14 @@
 package com.example.jooq;
 
 
+import com.example.jooq.tables.CustomCakeOrders;
+import com.example.jooq.tables.Orders;
+import com.example.jooq.tables.StandardOrders;
 import com.example.jooq.tables.TblCakeOrders;
 import com.example.jooq.tables.TblCustomModifiers;
 import com.example.jooq.tables.TblCustomOrderInfo;
 import com.example.jooq.tables.TblCustomShoppingCartInfo;
-import com.example.jooq.tables.TblModiferValues;
+import com.example.jooq.tables.TblModifierValues;
 import com.example.jooq.tables.TblProdCategories;
 import com.example.jooq.tables.TblProducts;
 import com.example.jooq.tables.TblShoppingCartItems;
@@ -36,6 +39,21 @@ public class DefaultSchema extends SchemaImpl {
     public static final DefaultSchema DEFAULT_SCHEMA = new DefaultSchema();
 
     /**
+     * The table <code>custom_cake_orders</code>.
+     */
+    public final CustomCakeOrders CUSTOM_CAKE_ORDERS = CustomCakeOrders.CUSTOM_CAKE_ORDERS;
+
+    /**
+     * The table <code>orders</code>.
+     */
+    public final Orders ORDERS = Orders.ORDERS;
+
+    /**
+     * The table <code>standard_orders</code>.
+     */
+    public final StandardOrders STANDARD_ORDERS = StandardOrders.STANDARD_ORDERS;
+
+    /**
      * The table <code>tbl_cake_orders</code>.
      */
     public final TblCakeOrders TBL_CAKE_ORDERS = TblCakeOrders.TBL_CAKE_ORDERS;
@@ -56,9 +74,9 @@ public class DefaultSchema extends SchemaImpl {
     public final TblCustomShoppingCartInfo TBL_CUSTOM_SHOPPING_CART_INFO = TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO;
 
     /**
-     * The table <code>tbl_modifer_values</code>.
+     * The table <code>tbl_modifier_values</code>.
      */
-    public final TblModiferValues TBL_MODIFER_VALUES = TblModiferValues.TBL_MODIFER_VALUES;
+    public final TblModifierValues TBL_MODIFIER_VALUES = TblModifierValues.TBL_MODIFIER_VALUES;
 
     /**
      * The table <code>tbl_prod_categories</code>.
@@ -96,11 +114,14 @@ public class DefaultSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            CustomCakeOrders.CUSTOM_CAKE_ORDERS,
+            Orders.ORDERS,
+            StandardOrders.STANDARD_ORDERS,
             TblCakeOrders.TBL_CAKE_ORDERS,
             TblCustomModifiers.TBL_CUSTOM_MODIFIERS,
             TblCustomOrderInfo.TBL_CUSTOM_ORDER_INFO,
             TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO,
-            TblModiferValues.TBL_MODIFER_VALUES,
+            TblModifierValues.TBL_MODIFIER_VALUES,
             TblProdCategories.TBL_PROD_CATEGORIES,
             TblProducts.TBL_PRODUCTS,
             TblShoppingCartItems.TBL_SHOPPING_CART_ITEMS,

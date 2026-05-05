@@ -19,16 +19,16 @@ public class TblProdCategoriesRecord extends UpdatableRecordImpl<TblProdCategori
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>tbl_prod_categories.catgeory_id</code>.
+     * Setter for <code>tbl_prod_categories.categeory_id</code>.
      */
-    public void setCatgeoryId(Integer value) {
+    public void setCategeoryId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>tbl_prod_categories.catgeory_id</code>.
+     * Getter for <code>tbl_prod_categories.categeory_id</code>.
      */
-    public Integer getCatgeoryId() {
+    public Integer getCategeoryId() {
         return (Integer) get(0);
     }
 
@@ -69,10 +69,10 @@ public class TblProdCategoriesRecord extends UpdatableRecordImpl<TblProdCategori
     /**
      * Create a detached, initialised TblProdCategoriesRecord
      */
-    public TblProdCategoriesRecord(Integer catgeoryId, String categoryName) {
+    public TblProdCategoriesRecord(Integer categeoryId, String categoryName) {
         super(TblProdCategories.TBL_PROD_CATEGORIES);
 
-        setCatgeoryId(catgeoryId);
+        setCategeoryId(categeoryId);
         setCategoryName(categoryName);
         resetChangedOnNotNull();
     }

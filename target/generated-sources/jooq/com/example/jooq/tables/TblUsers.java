@@ -66,32 +66,32 @@ public class TblUsers extends TableImpl<TblUsersRecord> {
     /**
      * The column <code>tbl_users.username</code>.
      */
-    public final TableField<TblUsersRecord, String> USERNAME = createField(DSL.name("username"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+    public final TableField<TblUsersRecord, String> USERNAME = createField(DSL.name("username"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_users.password</code>.
      */
-    public final TableField<TblUsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(200).nullable(false), this, "");
+    public final TableField<TblUsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_users.employee</code>.
      */
-    public final TableField<TblUsersRecord, Boolean> EMPLOYEE = createField(DSL.name("employee"), SQLDataType.BOOLEAN, this, "");
+    public final TableField<TblUsersRecord, Boolean> EMPLOYEE = createField(DSL.name("employee"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
      * The column <code>tbl_users.email</code>.
      */
-    public final TableField<TblUsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<TblUsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_users.user_address</code>.
      */
-    public final TableField<TblUsersRecord, String> USER_ADDRESS = createField(DSL.name("user_address"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<TblUsersRecord, String> USER_ADDRESS = createField(DSL.name("user_address"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_users.phone_number</code>.
      */
-    public final TableField<TblUsersRecord, String> PHONE_NUMBER = createField(DSL.name("phone_number"), SQLDataType.VARCHAR(10), this, "");
+    public final TableField<TblUsersRecord, String> PHONE_NUMBER = createField(DSL.name("phone_number"), SQLDataType.VARCHAR(255), this, "");
 
     private TblUsers(Name alias, Table<TblUsersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -172,7 +172,7 @@ public class TblUsers extends TableImpl<TblUsersRecord> {
 
     @Override
     public List<UniqueKey<TblUsersRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_TBL_USERS_CONS, Keys.KEY_TBL_USERS_NO_DUPLICATE_EMAILS);
+        return Arrays.asList(Keys.KEY_TBL_USERS_CONS, Keys.KEY_TBL_USERS_UQ_USERNAME, Keys.KEY_TBL_USERS_NO_DUPLICATE_EMAILS);
     }
 
     private transient TblCakeOrdersPath _tblCakeOrders;

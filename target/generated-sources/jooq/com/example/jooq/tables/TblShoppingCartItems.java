@@ -6,6 +6,7 @@ package com.example.jooq.tables;
 
 import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
+import com.example.jooq.tables.TblProducts.TblProductsPath;
 import com.example.jooq.tables.TblUsers.TblUsersPath;
 import com.example.jooq.tables.records.TblShoppingCartItemsRecord;
 
@@ -156,7 +157,7 @@ public class TblShoppingCartItems extends TableImpl<TblShoppingCartItemsRecord> 
 
     @Override
     public List<ForeignKey<TblShoppingCartItemsRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_USERS);
+        return Arrays.asList(Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_USERS, Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_PRODUCTS);
     }
 
     private transient TblUsersPath _tblUsers;
@@ -169,6 +170,19 @@ public class TblShoppingCartItems extends TableImpl<TblShoppingCartItemsRecord> 
             _tblUsers = new TblUsersPath(this, Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_USERS, null);
 
         return _tblUsers;
+    }
+
+    private transient TblProductsPath _tblProducts;
+
+    /**
+     * Get the implicit join path to the <code>defaultdb.tbl_products</code>
+     * table.
+     */
+    public TblProductsPath tblProducts() {
+        if (_tblProducts == null)
+            _tblProducts = new TblProductsPath(this, Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_PRODUCTS, null);
+
+        return _tblProducts;
     }
 
     @Override

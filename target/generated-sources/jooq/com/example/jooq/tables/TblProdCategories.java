@@ -58,9 +58,9 @@ public class TblProdCategories extends TableImpl<TblProdCategoriesRecord> {
     }
 
     /**
-     * The column <code>tbl_prod_categories.catgeory_id</code>.
+     * The column <code>tbl_prod_categories.categeory_id</code>.
      */
-    public final TableField<TblProdCategoriesRecord, Integer> CATGEORY_ID = createField(DSL.name("catgeory_id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<TblProdCategoriesRecord, Integer> CATEGEORY_ID = createField(DSL.name("categeory_id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>tbl_prod_categories.category_name</code>.

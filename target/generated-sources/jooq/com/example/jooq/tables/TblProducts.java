@@ -8,6 +8,7 @@ import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
 import com.example.jooq.tables.TblCakeOrders.TblCakeOrdersPath;
 import com.example.jooq.tables.TblProdCategories.TblProdCategoriesPath;
+import com.example.jooq.tables.TblShoppingCartItems.TblShoppingCartItemsPath;
 import com.example.jooq.tables.records.TblProductsRecord;
 
 import java.util.Arrays;
@@ -66,7 +67,7 @@ public class TblProducts extends TableImpl<TblProductsRecord> {
     /**
      * The column <code>tbl_products.product_name</code>.
      */
-    public final TableField<TblProductsRecord, String> PRODUCT_NAME = createField(DSL.name("product_name"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<TblProductsRecord, String> PRODUCT_NAME = createField(DSL.name("product_name"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_products.stock_quantity</code>.
@@ -76,12 +77,12 @@ public class TblProducts extends TableImpl<TblProductsRecord> {
     /**
      * The column <code>tbl_products.product_image</code>.
      */
-    public final TableField<TblProductsRecord, String> PRODUCT_IMAGE = createField(DSL.name("product_image"), SQLDataType.CLOB.nullable(false), this, "");
+    public final TableField<TblProductsRecord, String> PRODUCT_IMAGE = createField(DSL.name("product_image"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_products.product_description</code>.
      */
-    public final TableField<TblProductsRecord, String> PRODUCT_DESCRIPTION = createField(DSL.name("product_description"), SQLDataType.VARCHAR(500).nullable(false), this, "");
+    public final TableField<TblProductsRecord, String> PRODUCT_DESCRIPTION = createField(DSL.name("product_description"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>tbl_products.product_category</code>.
@@ -204,6 +205,19 @@ public class TblProducts extends TableImpl<TblProductsRecord> {
             _tblCakeOrders = new TblCakeOrdersPath(this, null, Keys.FK_TBL_CAKE_ORDERS_TBL_PRODUCTS.getInverseKey());
 
         return _tblCakeOrders;
+    }
+
+    private transient TblShoppingCartItemsPath _tblShoppingCartItems;
+
+    /**
+     * Get the implicit to-many join path to the
+     * <code>defaultdb.tbl_shopping_cart_items</code> table
+     */
+    public TblShoppingCartItemsPath tblShoppingCartItems() {
+        if (_tblShoppingCartItems == null)
+            _tblShoppingCartItems = new TblShoppingCartItemsPath(this, null, Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_PRODUCTS.getInverseKey());
+
+        return _tblShoppingCartItems;
     }
 
     @Override

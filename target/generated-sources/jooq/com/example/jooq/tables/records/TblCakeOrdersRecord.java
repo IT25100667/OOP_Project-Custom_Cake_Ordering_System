@@ -6,7 +6,7 @@ package com.example.jooq.tables.records;
 
 import com.example.jooq.tables.TblCakeOrders;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
@@ -79,29 +79,43 @@ public class TblCakeOrdersRecord extends UpdatableRecordImpl<TblCakeOrdersRecord
     /**
      * Setter for <code>tbl_cake_orders.date_of_order</code>.
      */
-    public void setDateOfOrder(LocalDate value) {
+    public void setDateOfOrder(LocalDateTime value) {
         set(4, value);
     }
 
     /**
      * Getter for <code>tbl_cake_orders.date_of_order</code>.
      */
-    public LocalDate getDateOfOrder() {
-        return (LocalDate) get(4);
+    public LocalDateTime getDateOfOrder() {
+        return (LocalDateTime) get(4);
     }
 
     /**
      * Setter for <code>tbl_cake_orders.order_status</code>.
      */
-    public void setOrderStatus(Integer value) {
+    public void setOrderStatus(String value) {
         set(5, value);
     }
 
     /**
      * Getter for <code>tbl_cake_orders.order_status</code>.
      */
-    public Integer getOrderStatus() {
-        return (Integer) get(5);
+    public String getOrderStatus() {
+        return (String) get(5);
+    }
+
+    /**
+     * Setter for <code>tbl_cake_orders.total_price</code>.
+     */
+    public void setTotalPrice(Double value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for <code>tbl_cake_orders.total_price</code>.
+     */
+    public Double getTotalPrice() {
+        return (Double) get(6);
     }
 
     // -------------------------------------------------------------------------
@@ -127,7 +141,7 @@ public class TblCakeOrdersRecord extends UpdatableRecordImpl<TblCakeOrdersRecord
     /**
      * Create a detached, initialised TblCakeOrdersRecord
      */
-    public TblCakeOrdersRecord(Integer orderId, Integer customerId, Integer productId, Integer quantity, LocalDate dateOfOrder, Integer orderStatus) {
+    public TblCakeOrdersRecord(Integer orderId, Integer customerId, Integer productId, Integer quantity, LocalDateTime dateOfOrder, String orderStatus, Double totalPrice) {
         super(TblCakeOrders.TBL_CAKE_ORDERS);
 
         setOrderId(orderId);
@@ -136,6 +150,7 @@ public class TblCakeOrdersRecord extends UpdatableRecordImpl<TblCakeOrdersRecord
         setQuantity(quantity);
         setDateOfOrder(dateOfOrder);
         setOrderStatus(orderStatus);
+        setTotalPrice(totalPrice);
         resetChangedOnNotNull();
     }
 }

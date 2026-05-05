@@ -6,23 +6,41 @@ import com.example.jooq.tables.records.TblCustomOrderInfoRecord;
 import org.jooq.Record2;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class OrderDTO {
     public int order_id;
     public int customer_id;
     public int product_id;
     public int quantity;
-    public LocalDate date_of_order;
-    public int order_status;
+    public LocalDateTime date_of_order;
+    public String order_status;
     public CustomOrderInfoDTO custom_order_info;
+    public UserDTO user_info;
+    public double total_price;
 
-    public OrderDTO(int order_id, int customer_id, int product_id, int quantity, LocalDate date_of_order, int order_status) {
+    public OrderDTO(int order_id, int customer_id, int product_id, int quantity, LocalDateTime date_of_order, String order_status, CustomOrderInfoDTO custom_order_info, double total_price) {
         this.order_id = order_id;
         this.customer_id = customer_id;
         this.product_id = product_id;
         this.quantity = quantity;
         this.date_of_order = date_of_order;
         this.order_status = order_status;
+        this.custom_order_info = custom_order_info;
+        this.total_price = total_price;
+    }
+
+    public OrderDTO(int order_id, int customer_id, int product_id, int quantity, LocalDateTime date_of_order, String order_status, CustomOrderInfoDTO custom_order_info, UserDTO user_info) {
+        this.order_id = order_id;
+        this.customer_id = customer_id;
+        this.product_id = product_id;
+        this.quantity = quantity;
+        this.date_of_order = date_of_order;
+        this.order_status = order_status;
+        this.custom_order_info = custom_order_info;
+        this.user_info = user_info;
+        this.total_price = total_price;
+
     }
 
     public OrderDTO(TblCakeOrdersRecord record){
@@ -42,10 +60,12 @@ public class OrderDTO {
         this.date_of_order = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getDateOfOrder();
         this.order_status = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getOrderStatus();
         this.custom_order_info = new CustomOrderInfoDTO(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component2());
+
     }
 
+
     public TblCakeOrdersRecord getRecord(){
-        return new TblCakeOrdersRecord(order_id, customer_id, product_id, quantity, date_of_order, order_status);
+        return new TblCakeOrdersRecord(order_id, customer_id, product_id, quantity, date_of_order, order_status, total_price);
     }
 
 

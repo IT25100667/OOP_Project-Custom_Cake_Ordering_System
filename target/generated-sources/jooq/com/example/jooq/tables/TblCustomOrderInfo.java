@@ -8,7 +8,7 @@ import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
 import com.example.jooq.tables.TblCakeOrders.TblCakeOrdersPath;
 import com.example.jooq.tables.TblCustomModifiers.TblCustomModifiersPath;
-import com.example.jooq.tables.TblModiferValues.TblModiferValuesPath;
+import com.example.jooq.tables.TblModifierValues.TblModifierValuesPath;
 import com.example.jooq.tables.records.TblCustomOrderInfoRecord;
 
 import java.util.Arrays;
@@ -157,11 +157,6 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
     }
 
     @Override
-    public List<UniqueKey<TblCustomOrderInfoRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_TBL_CUSTOM_ORDER_INFO_UNQ_TBL_CUSTOM_ORDER_INFO_ORDER_ID);
-    }
-
-    @Override
     public List<ForeignKey<TblCustomOrderInfoRecord, ?>> getReferences() {
         return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES);
     }
@@ -192,17 +187,17 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
         return _tblCustomModifiers;
     }
 
-    private transient TblModiferValuesPath _tblModiferValues;
+    private transient TblModifierValuesPath _tblModifierValues;
 
     /**
      * Get the implicit join path to the
-     * <code>defaultdb.tbl_modifer_values</code> table.
+     * <code>defaultdb.tbl_modifier_values</code> table.
      */
-    public TblModiferValuesPath tblModiferValues() {
-        if (_tblModiferValues == null)
-            _tblModiferValues = new TblModiferValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES, null);
+    public TblModifierValuesPath tblModifierValues() {
+        if (_tblModifierValues == null)
+            _tblModifierValues = new TblModifierValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES, null);
 
-        return _tblModiferValues;
+        return _tblModifierValues;
     }
 
     @Override
