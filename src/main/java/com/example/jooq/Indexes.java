@@ -4,6 +4,7 @@
 package com.example.jooq;
 
 
+import com.example.jooq.tables.TblCustomOrderInfo;
 import com.example.jooq.tables.TblCustomShoppingCartInfo;
 
 import org.jooq.Index;
@@ -23,5 +24,6 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index TBL_CUSTOM_SHOPPING_CART_INFO_FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_0 = Internal.createIndex(DSL.name("fk_tbl_custom_order_info_tbl_custom_modifiers_0"), TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO, new OrderField[] { TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO.MODIFIER_ID }, false);
-    public static final Index TBL_CUSTOM_SHOPPING_CART_INFO_FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_0 = Internal.createIndex(DSL.name("fk_tbl_custom_order_info_tbl_modifer_values_0"), TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO, new OrderField[] { TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO.MODIFIER_VALUE_ID }, false);
+    public static final Index TBL_CUSTOM_ORDER_INFO_IDX_TBL_CUSTOM_ORDER_INFO_MODIFIER_VALUE_ID = Internal.createIndex(DSL.name("idx_tbl_custom_order_info_modifier_value_id"), TblCustomOrderInfo.TBL_CUSTOM_ORDER_INFO, new OrderField[] { TblCustomOrderInfo.TBL_CUSTOM_ORDER_INFO.MODIFIER_VALUE_ID }, false);
+    public static final Index TBL_CUSTOM_SHOPPING_CART_INFO_IDX_TBL_CUSTOM_SHOPPING_CART_INFO_MODIFIER_VALUE_ID = Internal.createIndex(DSL.name("idx_tbl_custom_shopping_cart_info_modifier_value_id"), TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO, new OrderField[] { TblCustomShoppingCartInfo.TBL_CUSTOM_SHOPPING_CART_INFO.MODIFIER_VALUE_ID }, false);
 }

@@ -5,10 +5,10 @@ package com.example.jooq.tables;
 
 
 import com.example.jooq.DefaultSchema;
+import com.example.jooq.Indexes;
 import com.example.jooq.Keys;
 import com.example.jooq.tables.TblCakeOrders.TblCakeOrdersPath;
 import com.example.jooq.tables.TblCustomModifiers.TblCustomModifiersPath;
-import com.example.jooq.tables.TblModifierValues.TblModifierValuesPath;
 import com.example.jooq.tables.records.TblCustomOrderInfoRecord;
 
 import java.util.Arrays;
@@ -19,6 +19,7 @@ import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.InverseForeignKey;
 import org.jooq.Name;
 import org.jooq.Path;
@@ -78,6 +79,11 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
      * The column <code>tbl_custom_order_info.modifier_value_id</code>.
      */
     public final TableField<TblCustomOrderInfoRecord, Integer> MODIFIER_VALUE_ID = createField(DSL.name("modifier_value_id"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>tbl_custom_order_info.chosen_text</code>.
+     */
+    public final TableField<TblCustomOrderInfoRecord, String> CHOSEN_TEXT = createField(DSL.name("chosen_text"), SQLDataType.VARCHAR(255), this, "");
 
     private TblCustomOrderInfo(Name alias, Table<TblCustomOrderInfoRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -147,6 +153,11 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
     }
 
     @Override
+    public List<Index> getIndexes() {
+        return Arrays.asList(Indexes.TBL_CUSTOM_ORDER_INFO_IDX_TBL_CUSTOM_ORDER_INFO_MODIFIER_VALUE_ID);
+    }
+
+    @Override
     public Identity<TblCustomOrderInfoRecord, Integer> getIdentity() {
         return (Identity<TblCustomOrderInfoRecord, Integer>) super.getIdentity();
     }
@@ -158,7 +169,7 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
 
     @Override
     public List<ForeignKey<TblCustomOrderInfoRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES);
+        return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CAKE_ORDERS, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS);
     }
 
     private transient TblCakeOrdersPath _tblCakeOrders;
@@ -185,19 +196,6 @@ public class TblCustomOrderInfo extends TableImpl<TblCustomOrderInfoRecord> {
             _tblCustomModifiers = new TblCustomModifiersPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS, null);
 
         return _tblCustomModifiers;
-    }
-
-    private transient TblModifierValuesPath _tblModifierValues;
-
-    /**
-     * Get the implicit join path to the
-     * <code>defaultdb.tbl_modifier_values</code> table.
-     */
-    public TblModifierValuesPath tblModifierValues() {
-        if (_tblModifierValues == null)
-            _tblModifierValues = new TblModifierValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES, null);
-
-        return _tblModifierValues;
     }
 
     @Override

@@ -7,10 +7,12 @@ import static com.example.jooq.tables.TblCakeOrders.TBL_CAKE_ORDERS;
 
 import models.Response;
 import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class OrdersRepository {
 
     private DSLContext _context;
@@ -23,7 +25,7 @@ public class OrdersRepository {
         try{
             for(OrderDTO order: orders){
                 order.getRecord().store();
-                order.custom_order_info.getRecord().store();
+                order.getCustomOrderInfo().getRecord().store();
             }
             return new Response();
         }
@@ -35,14 +37,19 @@ public class OrdersRepository {
     public List<OrderDTO> getOrders() {
         return _context.select(TBL_CAKE_ORDERS, TBL_CUSTOM_ORDER_INFO)
                 .from(TBL_CAKE_ORDERS)
-                .innerJoin(TBL_CAKE_ORDERS).on(TBL_CUSTOM_ORDER_INFO.ORDER_ID.eq(TBL_CAKE_ORDERS.ORDER_ID))
+                .leftJoin(TBL_CUSTOM_ORDER_INFO).on(TBL_CUSTOM_ORDER_INFO.ORDER_ID.eq(TBL_CAKE_ORDERS.ORDER_ID))
+                .stream().map(OrderDTO::new).collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> getOrdersWithoutCustomOrderDetails() {
+        return _context.selectFrom(TBL_CAKE_ORDERS)
                 .stream().map(OrderDTO::new).collect(Collectors.toList());
     }
 
     public List<OrderDTO> getOrders(int userID) {
         return _context.select(TBL_CAKE_ORDERS, TBL_CUSTOM_ORDER_INFO)
                 .from(TBL_CAKE_ORDERS)
-                .innerJoin(TBL_CAKE_ORDERS).on(TBL_CUSTOM_ORDER_INFO.ORDER_ID.eq(TBL_CAKE_ORDERS.ORDER_ID))
+                .innerJoin(TBL_CUSTOM_ORDER_INFO).on(TBL_CUSTOM_ORDER_INFO.ORDER_ID.eq(TBL_CAKE_ORDERS.ORDER_ID))
                 .where(TBL_CAKE_ORDERS.CUSTOMER_ID.eq(userID))
                 .stream().map(OrderDTO::new).collect(Collectors.toList());
     }
@@ -54,5 +61,9 @@ public class OrdersRepository {
         } catch (Exception ex) {
             return new Response(false, ex.getMessage());
         }
+    }
+
+    public void updateOrderStatus(int orderId, String orderStatus) {
+        _context.update(TBL_CAKE_ORDERS).set(TBL_CAKE_ORDERS.ORDER_STATUS, orderStatus).where(TBL_CAKE_ORDERS.ORDER_ID.eq(orderId)).execute();
     }
 }

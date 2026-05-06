@@ -74,6 +74,20 @@ public class TblCustomOrderInfoRecord extends UpdatableRecordImpl<TblCustomOrder
         return (Integer) get(3);
     }
 
+    /**
+     * Setter for <code>tbl_custom_order_info.chosen_text</code>.
+     */
+    public void setChosenText(String value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>tbl_custom_order_info.chosen_text</code>.
+     */
+    public String getChosenText() {
+        return (String) get(4);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -97,13 +111,14 @@ public class TblCustomOrderInfoRecord extends UpdatableRecordImpl<TblCustomOrder
     /**
      * Create a detached, initialised TblCustomOrderInfoRecord
      */
-    public TblCustomOrderInfoRecord(Integer customOrderId, Integer orderId, Integer modifierId, Integer modifierValueId) {
+    public TblCustomOrderInfoRecord(Integer customOrderId, Integer orderId, Integer modifierId, Integer modifierValueId, String chosenText) {
         super(TblCustomOrderInfo.TBL_CUSTOM_ORDER_INFO);
 
         setCustomOrderId(customOrderId);
         setOrderId(orderId);
         setModifierId(modifierId);
         setModifierValueId(modifierValueId);
+        setChosenText(chosenText);
         resetChangedOnNotNull();
     }
 }

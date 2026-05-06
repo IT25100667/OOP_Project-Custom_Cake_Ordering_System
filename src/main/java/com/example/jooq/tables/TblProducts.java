@@ -92,7 +92,7 @@ public class TblProducts extends TableImpl<TblProductsRecord> {
     /**
      * The column <code>tbl_products.product_price</code>.
      */
-    public final TableField<TblProductsRecord, Double> PRODUCT_PRICE = createField(DSL.name("product_price"), SQLDataType.FLOAT, this, "");
+    public final TableField<TblProductsRecord, Long> PRODUCT_PRICE = createField(DSL.name("product_price"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>tbl_products.custom_cake</code>.

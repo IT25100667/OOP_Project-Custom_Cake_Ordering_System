@@ -105,15 +105,15 @@ public class TblProductsRecord extends UpdatableRecordImpl<TblProductsRecord> {
     /**
      * Setter for <code>tbl_products.product_price</code>.
      */
-    public void setProductPrice(Double value) {
+    public void setProductPrice(Long value) {
         set(6, value);
     }
 
     /**
      * Getter for <code>tbl_products.product_price</code>.
      */
-    public Double getProductPrice() {
-        return (Double) get(6);
+    public Long getProductPrice() {
+        return (Long) get(6);
     }
 
     /**
@@ -153,7 +153,7 @@ public class TblProductsRecord extends UpdatableRecordImpl<TblProductsRecord> {
     /**
      * Create a detached, initialised TblProductsRecord
      */
-    public TblProductsRecord(Integer productId, String productName, Integer stockQuantity, String productImage, String productDescription, Integer productCategory, Double productPrice, Boolean customCake) {
+    public TblProductsRecord(Integer productId, String productName, Integer stockQuantity, String productImage, String productDescription, Integer productCategory, Long productPrice, Boolean customCake) {
         super(TblProducts.TBL_PRODUCTS);
 
         setProductId(productId);

@@ -46,20 +46,6 @@ public class TblCustomModifiersRecord extends UpdatableRecordImpl<TblCustomModif
         return (String) get(1);
     }
 
-    /**
-     * Setter for <code>tbl_custom_modifiers.price_modifier</code>.
-     */
-    public void setPriceModifier(String value) {
-        set(2, value);
-    }
-
-    /**
-     * Getter for <code>tbl_custom_modifiers.price_modifier</code>.
-     */
-    public String getPriceModifier() {
-        return (String) get(2);
-    }
-
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -83,12 +69,11 @@ public class TblCustomModifiersRecord extends UpdatableRecordImpl<TblCustomModif
     /**
      * Create a detached, initialised TblCustomModifiersRecord
      */
-    public TblCustomModifiersRecord(Integer modifierId, String modifierName, String priceModifier) {
+    public TblCustomModifiersRecord(Integer modifierId, String modifierName) {
         super(TblCustomModifiers.TBL_CUSTOM_MODIFIERS);
 
         setModifierId(modifierId);
         setModifierName(modifierName);
-        setPriceModifier(priceModifier);
         resetChangedOnNotNull();
     }
 }

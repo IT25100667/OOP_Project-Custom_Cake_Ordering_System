@@ -93,7 +93,7 @@ public class TblCakeOrders extends TableImpl<TblCakeOrdersRecord> {
     /**
      * The column <code>tbl_cake_orders.total_price</code>.
      */
-    public final TableField<TblCakeOrdersRecord, Double> TOTAL_PRICE = createField(DSL.name("total_price"), SQLDataType.DOUBLE.nullable(false), this, "");
+    public final TableField<TblCakeOrdersRecord, Long> TOTAL_PRICE = createField(DSL.name("total_price"), SQLDataType.BIGINT.nullable(false), this, "");
 
     private TblCakeOrders(Name alias, Table<TblCakeOrdersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

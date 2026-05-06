@@ -8,7 +8,7 @@ import com.example.jooq.DefaultSchema;
 import com.example.jooq.Indexes;
 import com.example.jooq.Keys;
 import com.example.jooq.tables.TblCustomModifiers.TblCustomModifiersPath;
-import com.example.jooq.tables.TblModifierValues.TblModifierValuesPath;
+import com.example.jooq.tables.TblShoppingCartItems.TblShoppingCartItemsPath;
 import com.example.jooq.tables.records.TblCustomShoppingCartInfoRecord;
 
 import java.util.Arrays;
@@ -152,7 +152,7 @@ public class TblCustomShoppingCartInfo extends TableImpl<TblCustomShoppingCartIn
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.TBL_CUSTOM_SHOPPING_CART_INFO_FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_0, Indexes.TBL_CUSTOM_SHOPPING_CART_INFO_FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_0);
+        return Arrays.asList(Indexes.TBL_CUSTOM_SHOPPING_CART_INFO_FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_0, Indexes.TBL_CUSTOM_SHOPPING_CART_INFO_IDX_TBL_CUSTOM_SHOPPING_CART_INFO_MODIFIER_VALUE_ID);
     }
 
     @Override
@@ -166,13 +166,21 @@ public class TblCustomShoppingCartInfo extends TableImpl<TblCustomShoppingCartIn
     }
 
     @Override
-    public List<UniqueKey<TblCustomShoppingCartInfoRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_TBL_CUSTOM_SHOPPING_CART_INFO_UNQ_TBL_CUSTOM_ORDER_INFO_ORDER_ID_0);
+    public List<ForeignKey<TblCustomShoppingCartInfoRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.FK_CART_ITEM, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_1);
     }
 
-    @Override
-    public List<ForeignKey<TblCustomShoppingCartInfoRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_1, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1);
+    private transient TblShoppingCartItemsPath _tblShoppingCartItems;
+
+    /**
+     * Get the implicit join path to the
+     * <code>defaultdb.tbl_shopping_cart_items</code> table.
+     */
+    public TblShoppingCartItemsPath tblShoppingCartItems() {
+        if (_tblShoppingCartItems == null)
+            _tblShoppingCartItems = new TblShoppingCartItemsPath(this, Keys.FK_CART_ITEM, null);
+
+        return _tblShoppingCartItems;
     }
 
     private transient TblCustomModifiersPath _tblCustomModifiers;
@@ -186,19 +194,6 @@ public class TblCustomShoppingCartInfo extends TableImpl<TblCustomShoppingCartIn
             _tblCustomModifiers = new TblCustomModifiersPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_CUSTOM_MODIFIERS_1, null);
 
         return _tblCustomModifiers;
-    }
-
-    private transient TblModifierValuesPath _tblModifierValues;
-
-    /**
-     * Get the implicit join path to the
-     * <code>defaultdb.tbl_modifier_values</code> table.
-     */
-    public TblModifierValuesPath tblModifierValues() {
-        if (_tblModifierValues == null)
-            _tblModifierValues = new TblModifierValuesPath(this, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1, null);
-
-        return _tblModifierValues;
     }
 
     @Override

@@ -32,11 +32,6 @@ public class UserController {
         return "user/signup";
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(){
-        return "user/dashboard";
-    }
-
     @GetMapping("/profile")
     public String profile(){
         return "user/profile";

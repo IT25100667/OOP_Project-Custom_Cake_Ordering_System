@@ -24,10 +24,13 @@ public class CustomOrderInfoDTO {
     }
 
     public CustomOrderInfoDTO(TblCustomOrderInfoRecord tblCustomOrderInfoRecord) {
-        this.id = tblCustomOrderInfoRecord.getCustomOrderId();
-        this.order_id = tblCustomOrderInfoRecord.getOrderId();
-        this.modifier_id = tblCustomOrderInfoRecord.getModifierId();
-        this.modifierValueId = tblCustomOrderInfoRecord.getModifierValueId();
+        if(tblCustomOrderInfoRecord.getCustomOrderId()!=null){
+            this.id = tblCustomOrderInfoRecord.getCustomOrderId();
+            this.order_id = tblCustomOrderInfoRecord.getOrderId();
+            this.modifier_id = tblCustomOrderInfoRecord.getModifierId();
+            this.modifierValueId = tblCustomOrderInfoRecord.getModifierValueId();
+        }
+
     }
 
     public TblCustomOrderInfoRecord getRecord(){

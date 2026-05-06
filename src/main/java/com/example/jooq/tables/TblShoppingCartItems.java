@@ -6,6 +6,7 @@ package com.example.jooq.tables;
 
 import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
+import com.example.jooq.tables.TblCustomShoppingCartInfo.TblCustomShoppingCartInfoPath;
 import com.example.jooq.tables.TblProducts.TblProductsPath;
 import com.example.jooq.tables.TblUsers.TblUsersPath;
 import com.example.jooq.tables.records.TblShoppingCartItemsRecord;
@@ -183,6 +184,19 @@ public class TblShoppingCartItems extends TableImpl<TblShoppingCartItemsRecord> 
             _tblProducts = new TblProductsPath(this, Keys.FK_TBL_SHOPPING_CART_ITEMS_TBL_PRODUCTS, null);
 
         return _tblProducts;
+    }
+
+    private transient TblCustomShoppingCartInfoPath _tblCustomShoppingCartInfo;
+
+    /**
+     * Get the implicit to-many join path to the
+     * <code>defaultdb.tbl_custom_shopping_cart_info</code> table
+     */
+    public TblCustomShoppingCartInfoPath tblCustomShoppingCartInfo() {
+        if (_tblCustomShoppingCartInfo == null)
+            _tblCustomShoppingCartInfo = new TblCustomShoppingCartInfoPath(this, null, Keys.FK_CART_ITEM.getInverseKey());
+
+        return _tblCustomShoppingCartInfo;
     }
 
     @Override

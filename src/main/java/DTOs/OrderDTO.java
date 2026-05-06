@@ -1,72 +1,142 @@
 package DTOs;
 
-import com.example.jooq.tables.TblCakeOrders;
 import com.example.jooq.tables.records.TblCakeOrdersRecord;
 import com.example.jooq.tables.records.TblCustomOrderInfoRecord;
 import org.jooq.Record2;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderDTO {
-    public int order_id;
-    public int customer_id;
-    public int product_id;
-    public int quantity;
-    public LocalDateTime date_of_order;
-    public String order_status;
-    public CustomOrderInfoDTO custom_order_info;
-    public UserDTO user_info;
-    public double total_price;
+    private int orderId;
+    private int customerId;
+    private int productId;
+    private int quantity;
+    private LocalDateTime dateOfOrder;
+    private String orderStatus;
+    private CustomOrderInfoDTO customOrderInfo;
+    private UserDTO userInfo;
+    private Long totalPrice;
 
-    public OrderDTO(int order_id, int customer_id, int product_id, int quantity, LocalDateTime date_of_order, String order_status, CustomOrderInfoDTO custom_order_info, double total_price) {
-        this.order_id = order_id;
-        this.customer_id = customer_id;
-        this.product_id = product_id;
-        this.quantity = quantity;
-        this.date_of_order = date_of_order;
-        this.order_status = order_status;
-        this.custom_order_info = custom_order_info;
-        this.total_price = total_price;
+    public OrderDTO(int order_id, int customer_id, int productId, int quantity, LocalDateTime dateOfOrder, String orderStatus, CustomOrderInfoDTO customOrderInfo, Long totalPrice) {
+        this.setOrderId(order_id);
+        this.setCustomerId(customer_id);
+        this.setProductId(productId);
+        this.setQuantity(quantity);
+        this.setDateOfOrder(dateOfOrder);
+        this.setOrderStatus(orderStatus);
+        this.setCustomOrderInfo(customOrderInfo);
+        this.setTotalPrice(totalPrice);
     }
 
-    public OrderDTO(int order_id, int customer_id, int product_id, int quantity, LocalDateTime date_of_order, String order_status, CustomOrderInfoDTO custom_order_info, UserDTO user_info) {
-        this.order_id = order_id;
-        this.customer_id = customer_id;
-        this.product_id = product_id;
-        this.quantity = quantity;
-        this.date_of_order = date_of_order;
-        this.order_status = order_status;
-        this.custom_order_info = custom_order_info;
-        this.user_info = user_info;
-        this.total_price = total_price;
-
+    public OrderDTO(int order_id, int customer_id, int productId, int quantity, LocalDateTime dateOfOrder, String orderStatus, CustomOrderInfoDTO customOrderInfo, Long totalPrice, UserDTO userInfo) {
+        this.setOrderId(order_id);
+        this.setCustomerId(customer_id);
+        this.setProductId(productId);
+        this.setQuantity(quantity);
+        this.setDateOfOrder(dateOfOrder);
+        this.setOrderStatus(orderStatus);
+        this.setCustomOrderInfo(customOrderInfo);
+        this.setUserInfo(userInfo);
+        this.setTotalPrice(totalPrice);
     }
 
     public OrderDTO(TblCakeOrdersRecord record){
-        this.order_id = record.getOrderId();
-        this.customer_id = record.getCustomerId();
-        this.product_id = record.getProductId();
-        this.quantity = record.getQuantity();
-        this.date_of_order = record.getDateOfOrder();
-        this.order_status = record.getOrderStatus();
+        this.setOrderId(record.getOrderId());
+        this.setCustomerId(record.getCustomerId());
+        this.setProductId(record.getProductId());
+        this.setQuantity(record.getQuantity());
+        this.setTotalPrice(record.getTotalPrice());
+        this.setDateOfOrder(record.getDateOfOrder());
+        this.setOrderStatus(record.getOrderStatus());
     }
 
     public OrderDTO(Record2<TblCakeOrdersRecord, TblCustomOrderInfoRecord> tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2) {
-        this.order_id = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getOrderId();
-        this.customer_id = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getCustomerId();
-        this.product_id = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getProductId();
-        this.quantity = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getQuantity();
-        this.date_of_order = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getDateOfOrder();
-        this.order_status = tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getOrderStatus();
-        this.custom_order_info = new CustomOrderInfoDTO(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component2());
+        this.setOrderId(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getOrderId());
+        this.setCustomerId(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getCustomerId());
+        this.setProductId(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getProductId());
+        this.setQuantity(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getQuantity());
+        this.setDateOfOrder(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getDateOfOrder());
+        this.setOrderStatus(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getOrderStatus());
 
+        this.setCustomOrderInfo(new CustomOrderInfoDTO(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component2()));
+        this.setTotalPrice(tblCakeOrdersRecordTblCustomOrderInfoRecordRecord2.component1().getTotalPrice());
     }
 
 
     public TblCakeOrdersRecord getRecord(){
-        return new TblCakeOrdersRecord(order_id, customer_id, product_id, quantity, date_of_order, order_status, total_price);
+        return new TblCakeOrdersRecord(getOrderId(), getCustomerId(), getProductId(), getQuantity(), getDateOfOrder(), getOrderStatus(), getTotalPrice());
     }
 
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public LocalDateTime getDateOfOrder() {
+        return dateOfOrder;
+    }
+
+    public void setDateOfOrder(LocalDateTime dateOfOrder) {
+        this.dateOfOrder = dateOfOrder;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public CustomOrderInfoDTO getCustomOrderInfo() {
+        return customOrderInfo;
+    }
+
+    public void setCustomOrderInfo(CustomOrderInfoDTO customOrderInfo) {
+        this.customOrderInfo = customOrderInfo;
+    }
+
+    public UserDTO getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserDTO userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

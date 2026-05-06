@@ -6,21 +6,16 @@ package com.example.jooq.tables;
 
 import com.example.jooq.DefaultSchema;
 import com.example.jooq.Keys;
-import com.example.jooq.tables.TblCustomOrderInfo.TblCustomOrderInfoPath;
-import com.example.jooq.tables.TblCustomShoppingCartInfo.TblCustomShoppingCartInfoPath;
 import com.example.jooq.tables.records.TblModifierValuesRecord;
 
 import java.util.Collection;
 
 import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.ForeignKey;
-import org.jooq.InverseForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
-import org.jooq.Path;
 import org.jooq.PlainSQL;
 import org.jooq.QueryPart;
-import org.jooq.Record;
 import org.jooq.SQL;
 import org.jooq.Schema;
 import org.jooq.Select;
@@ -58,7 +53,7 @@ public class TblModifierValues extends TableImpl<TblModifierValuesRecord> {
     /**
      * The column <code>tbl_modifier_values.modifier_value_id</code>.
      */
-    public final TableField<TblModifierValuesRecord, Integer> MODIFIER_VALUE_ID = createField(DSL.name("modifier_value_id"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<TblModifierValuesRecord, Integer> MODIFIER_VALUE_ID = createField(DSL.name("modifier_value_id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>tbl_modifier_values.modifier_id</code>.
@@ -104,73 +99,19 @@ public class TblModifierValues extends TableImpl<TblModifierValuesRecord> {
         this(DSL.name("tbl_modifier_values"), null);
     }
 
-    public <O extends Record> TblModifierValues(Table<O> path, ForeignKey<O, TblModifierValuesRecord> childPath, InverseForeignKey<O, TblModifierValuesRecord> parentPath) {
-        super(path, childPath, parentPath, TBL_MODIFIER_VALUES);
-    }
-
-    /**
-     * A subtype implementing {@link Path} for simplified path-based joins.
-     */
-    public static class TblModifierValuesPath extends TblModifierValues implements Path<TblModifierValuesRecord> {
-
-        private static final long serialVersionUID = 1L;
-        public <O extends Record> TblModifierValuesPath(Table<O> path, ForeignKey<O, TblModifierValuesRecord> childPath, InverseForeignKey<O, TblModifierValuesRecord> parentPath) {
-            super(path, childPath, parentPath);
-        }
-        private TblModifierValuesPath(Name alias, Table<TblModifierValuesRecord> aliased) {
-            super(alias, aliased);
-        }
-
-        @Override
-        public TblModifierValuesPath as(String alias) {
-            return new TblModifierValuesPath(DSL.name(alias), this);
-        }
-
-        @Override
-        public TblModifierValuesPath as(Name alias) {
-            return new TblModifierValuesPath(alias, this);
-        }
-
-        @Override
-        public TblModifierValuesPath as(Table<?> alias) {
-            return new TblModifierValuesPath(alias.getQualifiedName(), this);
-        }
-    }
-
     @Override
     public Schema getSchema() {
         return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
     }
 
     @Override
+    public Identity<TblModifierValuesRecord, Integer> getIdentity() {
+        return (Identity<TblModifierValuesRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<TblModifierValuesRecord> getPrimaryKey() {
         return Keys.KEY_TBL_MODIFIER_VALUES_PRIMARY;
-    }
-
-    private transient TblCustomOrderInfoPath _tblCustomOrderInfo;
-
-    /**
-     * Get the implicit to-many join path to the
-     * <code>defaultdb.tbl_custom_order_info</code> table
-     */
-    public TblCustomOrderInfoPath tblCustomOrderInfo() {
-        if (_tblCustomOrderInfo == null)
-            _tblCustomOrderInfo = new TblCustomOrderInfoPath(this, null, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES.getInverseKey());
-
-        return _tblCustomOrderInfo;
-    }
-
-    private transient TblCustomShoppingCartInfoPath _tblCustomShoppingCartInfo;
-
-    /**
-     * Get the implicit to-many join path to the
-     * <code>defaultdb.tbl_custom_shopping_cart_info</code> table
-     */
-    public TblCustomShoppingCartInfoPath tblCustomShoppingCartInfo() {
-        if (_tblCustomShoppingCartInfo == null)
-            _tblCustomShoppingCartInfo = new TblCustomShoppingCartInfoPath(this, null, Keys.FK_TBL_CUSTOM_ORDER_INFO_TBL_MODIFER_VALUES_1.getInverseKey());
-
-        return _tblCustomShoppingCartInfo;
     }
 
     @Override

@@ -24,7 +24,7 @@
             <li><a href="home/about" class="nav-link">About</a></li>
             <li><a href="home/contact" class="nav-link">Contact</a></li>
             <sec:authorize access="hasRole('1')">
-                <li><a href="user/dashboard" class="nav-link">Admin</a></li>
+                <li><a href="admin/dashboard" class="nav-link">Admin</a></li>
             </sec:authorize>
 
 

@@ -64,12 +64,7 @@ public class TblCustomModifiers extends TableImpl<TblCustomModifiersRecord> {
     /**
      * The column <code>tbl_custom_modifiers.modifier_name</code>.
      */
-    public final TableField<TblCustomModifiersRecord, String> MODIFIER_NAME = createField(DSL.name("modifier_name"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>tbl_custom_modifiers.price_modifier</code>.
-     */
-    public final TableField<TblCustomModifiersRecord, String> PRICE_MODIFIER = createField(DSL.name("price_modifier"), SQLDataType.CLOB, this, "");
+    public final TableField<TblCustomModifiersRecord, String> MODIFIER_NAME = createField(DSL.name("modifier_name"), SQLDataType.VARCHAR(255), this, "");
 
     private TblCustomModifiers(Name alias, Table<TblCustomModifiersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

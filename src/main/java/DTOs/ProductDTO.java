@@ -14,12 +14,12 @@ public class ProductDTO {
     public int quantity;
     public String image;
     public String description;
-    public Double price;
+    public Long price;
     public int stockQuantity;
     public int productCategory;
     public boolean customCake;
 
-    public ProductDTO(int id, String name, int quantity, String image, String description, Double price, int stockQuantity, int productCategory, boolean customCake) {
+    public ProductDTO(int id, String name, int quantity, String image, String description, Long price, int stockQuantity, int productCategory, boolean customCake) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -102,11 +102,11 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

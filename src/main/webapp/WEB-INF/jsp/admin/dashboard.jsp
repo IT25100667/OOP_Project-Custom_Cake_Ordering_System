@@ -56,6 +56,18 @@
             color: hsl(var(--clr-text-dark) / 0.7);
             margin-bottom: 1.5rem;
         }
+
+        .select-element{
+            padding:0.3rem 0.8rem;
+            border-radius:50px;
+            font-size:0.8rem;
+            font-weight:600;
+            border:1px solid #e5e7eb;
+            cursor:pointer;
+            outline:none;
+            background:#fdf6b2;
+            color:#723b13;
+          }
     </style>
 </head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -78,7 +90,7 @@
         <div id="employee-stats" style="margin-bottom: 3rem;">
             <div style="background: hsl(var(--clr-surface)); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0, 0, 0, 0.05); text-align: center; margin-bottom: 2rem;">
                 <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 1rem; color: hsl(var(--clr-primary));">Total Sales</h3>
-                <p style="font-size: 3rem; font-weight: 700; color: #166534;">LKR 250,500.00</p>
+                <p style="font-size: 3rem; font-weight: 700; color: #166534;">LKR ${totalPrice}</p>
                 <p style="color: hsl(var(--clr-text-dark) / 0.7); margin-top: 0.5rem;">Total value of orders you placed</p>
             </div>
 
@@ -90,7 +102,7 @@
                             <tr style="border-bottom: 2px solid rgba(0,0,0,0.05);">
                                 <th style="padding: 1rem; font-weight: 600;">Order ID</th>
                                 <th style="padding: 1rem; font-weight: 600;">Date</th>
-                                <th style="padding: 1rem; font-weight: 600;">Customer</th>
+                                <th style="padding: 1rem; font-weight: 600;">Customer ID</th>
                                 <th style="padding: 1rem; font-weight: 600;">Amount</th>
                                 <th style="padding: 1rem; font-weight: 600;">Status</th>
                             </tr>
@@ -98,42 +110,24 @@
                         <tbody>
                                 <c:forEach var="order" items="${orders}">
                                     <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                        <td style="padding: 1rem;">{order.id}</td>
-                                        <td style="padding: 1rem;">{order.date_of_order}</td>
-                                        <td style="padding: 1rem;"></td>
-                                        <td style="padding: 1rem; font-weight: 600;">LKR 12,500</td>
+                                        <td style="padding: 1rem;">#${order.orderId}</td>
+                                        <td style="padding: 1rem;">${order.dateOfOrder}</td>
+                                        <td style="padding: 1rem;">#${order.customerId}</td>
+                                        <td style="padding: 1rem; font-weight: 600;">$${order.totalPrice}</td>
                                         <td style="padding: 1rem;">
-                                            <select style="padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e5e7eb; cursor: pointer; outline: none; background: #fdf6b2; color: #723b13;" onchange="this.style.background = this.value === 'Processing' ? '#fdf6b2' : '#dcfce7'; this.style.color = this.value === 'Processing' ? '#723b13' : '#166534';">
-                                                <option value="Processing" selected>Processing</option>
-                                                <option value="Delivered">Delivered</option>
-                                            </select>
+                                            <form action="../order/updateOrderStatus" method="POST">
+                                                <input type="text" name="orderId" value=${order.orderId} style="display:none">
+                                                <select class="select-element" onchange="changeColor(this, event)" name="orderStatus">
+                                                    <option value="Pending" ${order.orderStatus=="Pending" ? 'selected':''}>Pending</option>
+                                                    <option value="Processing" ${order.orderStatus=="Processing" ? 'selected':''}>Processing</option>
+                                                    <option value="Delivered" ${order.orderStatus=="Delivered" ? 'selected':''}>Delivered</option>
+                                                </select>
+                                            </form>
+
                                         </td>
                                     </tr>
                                 </c:forEach>
-                            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                <td style="padding: 1rem;">#ORD-08933</td>
-                                <td style="padding: 1rem;">Oct 23, 2026</td>
-                                <td style="padding: 1rem;">Nimal Silva</td>
-                                <td style="padding: 1rem; font-weight: 600;">LKR 8,000</td>
-                                <td style="padding: 1rem;">
-                                    <select style="padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e5e7eb; cursor: pointer; outline: none; background: #dcfce7; color: #166534;" onchange="this.style.background = this.value === 'Processing' ? '#fdf6b2' : '#dcfce7'; this.style.color = this.value === 'Processing' ? '#723b13' : '#166534';">
-                                        <option value="Processing">Processing</option>
-                                        <option value="Delivered" selected>Delivered</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                <td style="padding: 1rem;">#ORD-08931</td>
-                                <td style="padding: 1rem;">Oct 21, 2026</td>
-                                <td style="padding: 1rem;">Sunil Fernando</td>
-                                <td style="padding: 1rem; font-weight: 600;">LKR 25,000</td>
-                                <td style="padding: 1rem;">
-                                    <select style="padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e5e7eb; cursor: pointer; outline: none; background: #dcfce7; color: #166534;" onchange="this.style.background = this.value === 'Processing' ? '#fdf6b2' : '#dcfce7'; this.style.color = this.value === 'Processing' ? '#723b13' : '#166534';">
-                                        <option value="Processing">Processing</option>
-                                        <option value="Delivered" selected>Delivered</option>
-                                    </select>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -158,6 +152,33 @@
 
     <script src="/js/main.js"></script>
     <script src="/js/search.js"></script>
+    <script>
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+        var elements = document.getElementsByClassName('select-element');
+        for (i= 0; i < elements.length; i++) {
+            setColor(elements[i]);
+        }
+    })
+
+    function setColor(el){
+            el.style.background = el.value === 'Processing' ? '#fdf6b2' : el.value === 'Delivered' ? '#dcfce7':'#ff3c00e0'; el.style.color = el.value === 'Processing' ? '#723b13' : el.value === 'Delivered' ? '#166534':'white';
+    }
+
+    function changeColor(el, event){
+        event.preventDefault();
+        el.style.background = el.value === 'Processing' ? '#fdf6b2' : el.value === 'Delivered' ? '#dcfce7':'#ff3c00e0'; el.style.color = el.value === 'Processing' ? '#723b13' : el.value === 'Delivered' ? '#166534':'white';
+
+        fetch(el.closest("form").action, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams(new FormData(el.closest("form")))
+        });
+    }
+
+    </script>
 
 </body>
 

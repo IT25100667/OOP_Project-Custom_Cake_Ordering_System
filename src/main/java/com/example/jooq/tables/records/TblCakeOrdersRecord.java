@@ -107,15 +107,15 @@ public class TblCakeOrdersRecord extends UpdatableRecordImpl<TblCakeOrdersRecord
     /**
      * Setter for <code>tbl_cake_orders.total_price</code>.
      */
-    public void setTotalPrice(Double value) {
+    public void setTotalPrice(Long value) {
         set(6, value);
     }
 
     /**
      * Getter for <code>tbl_cake_orders.total_price</code>.
      */
-    public Double getTotalPrice() {
-        return (Double) get(6);
+    public Long getTotalPrice() {
+        return (Long) get(6);
     }
 
     // -------------------------------------------------------------------------
@@ -141,7 +141,7 @@ public class TblCakeOrdersRecord extends UpdatableRecordImpl<TblCakeOrdersRecord
     /**
      * Create a detached, initialised TblCakeOrdersRecord
      */
-    public TblCakeOrdersRecord(Integer orderId, Integer customerId, Integer productId, Integer quantity, LocalDateTime dateOfOrder, String orderStatus, Double totalPrice) {
+    public TblCakeOrdersRecord(Integer orderId, Integer customerId, Integer productId, Integer quantity, LocalDateTime dateOfOrder, String orderStatus, Long totalPrice) {
         super(TblCakeOrders.TBL_CAKE_ORDERS);
 
         setOrderId(orderId);
