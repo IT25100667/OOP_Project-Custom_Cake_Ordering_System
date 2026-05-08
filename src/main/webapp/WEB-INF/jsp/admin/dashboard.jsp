@@ -71,6 +71,7 @@
     </style>
 </head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:styles />
@@ -90,7 +91,10 @@
         <div id="employee-stats" style="margin-bottom: 3rem;">
             <div style="background: hsl(var(--clr-surface)); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0, 0, 0, 0.05); text-align: center; margin-bottom: 2rem;">
                 <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 1rem; color: hsl(var(--clr-primary));">Total Sales</h3>
-                <p style="font-size: 3rem; font-weight: 700; color: #166534;">LKR ${totalPrice}</p>
+                <p style="font-size: 3rem; font-weight: 700; color: #166534;">
+                    <fmt:setLocale value="en_LK"/>
+                    <fmt:formatNumber value="${totalPrice}" type="currency"  currencySymbol="LKR "/>
+                </p>
                 <p style="color: hsl(var(--clr-text-dark) / 0.7); margin-top: 0.5rem;">Total value of orders you placed</p>
             </div>
 
@@ -113,7 +117,9 @@
                                         <td style="padding: 1rem;">#${order.orderId}</td>
                                         <td style="padding: 1rem;">${order.dateOfOrder}</td>
                                         <td style="padding: 1rem;">#${order.customerId}</td>
-                                        <td style="padding: 1rem; font-weight: 600;">$${order.totalPrice}</td>
+                                        <td style="padding: 1rem; font-weight: 600;">
+                                            <fmt:formatNumber value="${order.totalPrice}" type="currency" currencySymbol="LKR "/>
+                                        </td>
                                         <td style="padding: 1rem;">
                                             <form action="../order/updateOrderStatus" method="POST">
                                                 <input type="text" name="orderId" value=${order.orderId} style="display:none">
