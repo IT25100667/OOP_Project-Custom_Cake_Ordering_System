@@ -4,6 +4,8 @@ import com.example.jooq.tables.TblCustomOrderInfo;
 import com.example.jooq.tables.records.TblCustomOrderInfoRecord;
 import com.example.jooq.tables.records.TblShoppingCartItemsRecord;
 
+import java.text.NumberFormat;
+
 public class CustomOrderInfoDTO {
     public int id;
     public int order_id;
@@ -30,7 +32,6 @@ public class CustomOrderInfoDTO {
             this.modifier_id = tblCustomOrderInfoRecord.getModifierId();
             this.modifierValueId = tblCustomOrderInfoRecord.getModifierValueId();
         }
-
     }
 
     public TblCustomOrderInfoRecord getRecord(){
