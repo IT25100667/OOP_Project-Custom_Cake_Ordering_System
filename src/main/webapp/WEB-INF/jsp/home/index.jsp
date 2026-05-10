@@ -19,7 +19,7 @@
                 <a href="#popular" class="btn btn-primary">
                     Shop Signature Cakes <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <a href="custom-cakes.html" class="btn btn-outline">
+                <a href="/products/custom-cakes" class="btn btn-outline">
                     Design a Custom Cake
                 </a>
             </div>
@@ -123,17 +123,17 @@
             <div>
                 <h4 class="footer-title">Shop</h4>
                 <div class="footer-links">
-                    <a href="search.html?category=all">All Products</a>
-                    <a href="custom-cakes.html">Custom Cakes</a>
-                    <a href="search.html?category=wedding">Wedding Collection</a>
-                    <a href="search.html?category=sweets">Sweets</a>
+                    <a href="/search?category=all">All Products</a>
+                    <a href="/products/custom-cakes">Custom Cakes</a>
+                    <a href="/search?category=wedding">Wedding Collection</a>
+                    <a href="/search?category=sweets">Sweets</a>
                 </div>
             </div>
             <div>
                 <h4 class="footer-title">Company</h4>
                 <div class="footer-links">
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact</a>
                     <a href="#">FAQ</a>
                     <a href="#">Terms of Service</a>
                 </div>
@@ -153,7 +153,7 @@
     </div>
 </footer>
 
-<script src="/static/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 </body>
 </html>
