@@ -9,6 +9,7 @@
 <!--Simply importing all the tags(templates) stored in the tags folder into the main jsp file--!>
 
 
+
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="container hero-grid">
